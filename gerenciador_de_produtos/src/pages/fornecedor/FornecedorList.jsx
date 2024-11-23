@@ -7,6 +7,7 @@ import {
   FaTrash,
   FaExclamationTriangle,
   FaCheckCircle,
+  FaQuestionCircle,
 } from "react-icons/fa";
 import Modal from 'react-modal'
 
@@ -15,7 +16,8 @@ const FornecedorList = () => {
     const [fornecedores, setFornecedores] = useState([]);
     const [fornecedorSelecionado, setFornecedorSelecionado] = useState(null);
     const [modalAberto, setModalAberto] = useState(false);
-    const [modalSucessoAberto, setModalSucessoAberto] = useState(false)
+    const [modalSucessoAberto, setModalSucessoAberto] = useState(false);
+    const [tooltipAberto, setTooltipAberto] = useState(false)
 
     useEffect(() => {
         const buscarForncedores = () => {
@@ -57,13 +59,24 @@ const FornecedorList = () => {
       })
     }
     
+    const toggleToolTip = () => {
+      setTooltipAberto(!tooltipAberto)
+    } 
 
   return (
     <div className="container mt-5">
-      <h2 className="mb-4">Lista de Fornecedor</h2>
+      <h2 className="mb-4" style={{position: 'relative'}}>Lista de Fornecedor{''}
+      <FaQuestionCircle className="tooltip-icon" onClick={toggleToolTip}/>
+        {tooltipAberto && (
+          <div className='tooltip'>
+            Aqui você pode ver, editar ou excluir fornecedores cadastrados no sistema.
+          </div>
+        )}
+      </h2>
       <Link to="/add-fornecedores" className="btn btn-primary mb-2">
         <FaPlus className="icon" /> Adicionar Fornecedor
       </Link>
+      
       <table className="table">
         <thead>
           <tr>
