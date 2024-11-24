@@ -2,15 +2,21 @@
   "fornecedores": [
     {
       "id": 1,
-		  "nome": "Urbano Ltda",
-		  "cnpj": "12.036.820/0001-12",
-		  "email": "sac@urbano.com.br"
+      "nome": "Urbano Ltda",
+      "cnpj": "12.036.820/0001-12",
+      "email": "sac@urbano.com.br"
     },
     {
       "id": 2,
-		  "nome": "Tio João",
-		  "cnpj": "75.069.991/0001-68",
-		  "email": "sac@tiojoao.com.br"
+      "nome": "Tio João",
+      "cnpj": "75.069.991/0001-68",
+      "email": "sac@tiojoao.com.br"
+    },
+    {
+      "nome": "LUCAS VYNICUS",
+      "cnpj": "12.345.678/0001-09",
+      "email": "luucas.albuquerque23@gmail.com",
+      "id": 3
     }
   ]
 }
