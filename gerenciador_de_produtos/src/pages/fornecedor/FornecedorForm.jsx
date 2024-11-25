@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { FaQuestionCircle, FaCheckCircle } from "react-icons/fa";
 import { useNavigate, useParams } from 'react-router-dom';
 import InputMask from 'react-input-mask'
@@ -17,6 +17,19 @@ const FornecedorForm = () => {
     const [modalAberto, setModalAberto] = useState(false);
     const navigate = useNavigate();
     const { id } = useParams();
+
+    useEffect(() => {
+      if (id) {
+        //Se tiver id, é que precisa fazer o get (edição)
+        axios.get(`/fornecedores/${id}`, fornecedor)
+        .then(response => {
+          setFornecedor(response.data)
+        })
+        .catch(error => console.error("Ocorreu um erro", error))
+      }
+      
+    }, [id]);
+    
     
     const toggleToolTip = () => {
       setTooltipAberto(!tooltipAberto)
@@ -123,7 +136,7 @@ const FornecedorForm = () => {
         className="modal"
         overlayClasseName="overlay"
       >
-        <div className="modal-content">
+        <div className="modalContent">
           <FaCheckCircle className="icon successIcon" />
           <h2>{id ? 'Fornecedor atualizado com sucesso!' : 
           'Fornecedor adicionado com sucesso!'}</h2>
