@@ -1,10 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
+import { FaUserCircle } from "react-icons/fa";
 import { Link, useLocation } from "react-router-dom";
 
 
 const Navbar = () => {
 
+  const [dropDownAberto, setDropDownAberto] = useState(false);
   const location = useLocation();
+
+   const toggleDropdown = () => {
+    setDropDownAberto(!dropDownAberto);
+   };
 
   const isActive = (path) => {
     return location.pathname === path ? 'active' : ''
@@ -46,6 +52,17 @@ const Navbar = () => {
         <Link to="/listar-clientes" className={isActive("/listar-clientes")}>
           Listar Clientes
         </Link>
+      </div>
+      <div className="avatar-container">
+        <FaUserCircle className="avatar-icon" onClick={toggleDropdown}/>
+        {
+          dropDownAberto && (
+            <div className="dropdown-menu">
+              <Link to="/meu-usuario">Usuario</Link>
+              <Link to="/sair">Sair</Link>
+            </div>
+          )
+        }
       </div>
     </nav>
   );
